@@ -90,7 +90,8 @@ Información general
 Registro de actividad                            
 Control de acceso (IAM)                        
 Etiquetas                        
-Diagnosticar y solucionar problemas                     
+Diagnosticar y solucionar problemas       
+
 Configuración                                                    
 * Redes
 * Conectar
