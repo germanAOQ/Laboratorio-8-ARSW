@@ -86,6 +86,61 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+Información general                           
+Registro de actividad                            
+Control de acceso (IAM)                        
+Etiquetas                        
+Diagnosticar y solucionar problemas                     
+Configuración                                                    
+* Redes
+* Conectar
+* Discos
+* Tamaño
+* Seguridad
+* Recomendaciones de Advisor
+* Extensiones
+* Entrega continua
+* Disponibilidad y escalado
+* Configuración
+* Identidad
+* Propiedades
+* Bloqueos        
+
+Operaciones                               
+* Bastión
+* Apagado automático
+* Backup
+* Recuperación ante desastres
+* Actualizaciones de invitado y host
+* Inventariar
+* Seguimiento de cambios
+* Administración de configuración (vista previa)
+* Directivas
+* Ejecutar comando    
+
+Supervisión                                                                
+* Conclusiones
+* Alertas
+* Métricas
+* Configuración de diagnóstico
+* Registros
+* Monitor de conexión
+* Libros                                     
+Automation                              
+* Tareas
+* Exportar plantilla     
+
+Soporte y solución de problemas                                  
+* Estado de los recursos
+* Diagnósticos de arranque
+* Performance Diagnostics (versión preliminar)
+* Restablecer contraseña
+* Volver a implementar
+* Plan de soporte técnico de Ubuntu Advantage
+* Consola de serie
+* Solución de problemas de conexión
+* Nueva solicitud de soporte técnico                                                
+
 2. ¿Brevemente describa para qué sirve cada recurso?
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
