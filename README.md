@@ -126,6 +126,7 @@ La función tarda tanto tiempo porque se hace uso de una memoria con muy poca ca
 
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
+    
     ![Tiempo](images/Newman.PNG)
     
     * Si hubo fallos documentelos y explique.
@@ -159,8 +160,16 @@ Creemos que no es lo mejor ya que no se usaron mecanismos que nos grantizaran co
 Cuando cambiamos el tamaño de la máquina virtual es necesario reiniciarla, por lo tanto se pierde disponibilidad de la aplicación ya que esta deja de funcionar mientras se reinicia.
 
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+
+Esto cambia los recursos de la maquina asi que es muy probable que afecte la disponibilidad al perderse los archivos de la maquina.
+
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
+
+En nuestro caso si se redujo el consumo de CPU por el aumento en la capacidad de procesador disminuyo de 36.8% a 2.6%.
+
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+
+
 
 ### Parte 2 - Escalabilidad horizontal
 
