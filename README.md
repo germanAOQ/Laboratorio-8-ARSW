@@ -256,6 +256,15 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
 ```
 
+|         Máquina       |CPU (promedio en la ultima hora)                       |
+|----------------|-------------------------------|-----------------------------|
+|Máquina 1| 13,3631%       
+|Máquina 2          |13,653%          
+|Máquina 3          |23,2629%
+|Máquina 4          |27,664%    
+
+La tasa de éxito aumento al utilizar escalamiento horizontal, porque la carga se distribuye de una mejor manera, al usar diferentes dispositivos que la atiendan, que al utilizar uno solo.
+
 **Preguntas**
 
 * ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
