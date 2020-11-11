@@ -258,13 +258,55 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 **Preguntas**
 
 * ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
+* Tipos de balanceadores:
+   * Public Load Balancer: Se utiliza cuando se necesite proporcionar conexiones salientes para máquinas virtuales (VM) dentro de su red virtual. Estas conexiones se logran traduciendo sus direcciones IP privadas a direcciones IP públicas. Los balanceadores de carga públicos se utilizan para equilibrar la carga del tráfico de Internet hacia sus máquinas virtuales.
+
+   * Private Load Balancer: Se utiliza cuando se necesitan direcciones IP privadas solo en la interfaz. Los equilibradores de carga internos se utilizan para equilibrar la carga del tráfico dentro de una red virtual. Se puede acceder a una interfaz de balanceador de carga desde una red local en un escenario híbrido.
+
 * ¿Cuál es el propósito del *Backend Pool*?
+   * Es un componente crítico del balanceador de carga que permite definir el grupo de recursos que brindarán tráfico para una regla de equilibrio de carga determinada.
+
+* Hay dos formas de configurar un grupo de backend:
+   * Tarjeta de interfaz de red (NIC)
+   * Combinación de dirección IP e ID de recurso de red virtual (VNET)
+
 * ¿Cuál es el propósito del *Health Probe*?
+   * Health probe marca cuando una instancia responde con un estado HTTP 200 dentro del período de tiempo de espera. Luego nos permite verificars si las instancias estan en un estado correcto, esto se realiza con una sonda de estado intenta comprobar el puerto de la sonda de estado configurado cada 15 segundos de forma predeterminada. El punto final de la sonda devuelve un código de respuesta HTTP distinto de 200 (por ejemplo, 403, 404 o 500)
+
 * ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
+   * Se usa para definir cómo se distribuye el tráfico a las VM. Primero se define la configuración de IP del frontend para el tráfico entrante y el grupo de IP para el backend.
+* Tipos de Sesión de Persistencia
+   * Distribución basada en hash:
+Es la distribucion que se encarga de asignar el tráfico al pool, esta distribucion mejora el rendimiento de las consultas en tabla grandes distribuidas en forma de estrella. Pueden tener un gran número de filas y aun así lograr un alto rendimiento.
+
+   * Modo de afinidad de IP de origen
+ Este modo utiliza un hash de dos tuplas (IP de origen e IP de destino) o de tres tuplas (IP de origen, IP de destino y tipo de protocolo) para asignar el tráfico a los servidores disponibles.
+* Un ejemplo de su funcionamiento seria:
+   * Un cliente inicia una sesión TCP en la dirección pública con equilibrio de carga y se dirige a un DIP específico. El canal se deja activo para monitorear el estado de la conexión.
+   * Se inicia una nueva sesión UDP desde el mismo equipo cliente en el mismo punto final público con equilibrio de carga. La conexión se dirige al mismo punto final DIP que la conexión TCP anterior. La carga de medios se puede ejecutar con un alto rendimiento mientras se mantiene un canal de control a través de TCP.
+
+
 * ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
+   * Virtual Network:
+   Una red virtual es una red donde todos los dispositivos, servidores, máquinas virtuales y centros de datos que están conectados lo hacen a través de software y tecnología inalámbrica. Esto permite expandir el alcance de la red tanto como sea necesario para lograr la máxima eficiencia, además de muchos otros beneficios.
+   * Subnet:
+   Una subred, o subred, es una red dentro de una red. Las subredes hacen que las redes sean más eficientes. A través de la división en subredes, el tráfico de la red puede viajar una distancia más corta sin pasar por enrutadores innecesarios para llegar a su destino.
+   * Address space:
+   Un espacio de direcciones define un rango de direcciones discretas, cada una de las cuales puede corresponder a un host de red, dispositivo periférico, sector de disco, una celda de memoria u otra entidad lógica o física.
+   * Address range:
+   Es el numero de direcciones que se puedan asignar en el Address space.
+   
 * ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
+   * Availability zone:
+   Las zonas de disponibilidad son ubicaciones físicas únicas con alimentación, red y refrigeración independientes. Cada zona de disponibilidad se compone de uno o más centros de datos y alberga infraestructura para admitir aplicaciones de misión crítica de alta disponibilidad.
+   * Zone-redundant:
+   Una ip zone-redundant permite implementar automáticamente puertas de enlace de red virtual en las zonas de disponibilidad, Con las puertas de enlace con redundancia de zona, puede beneficiarse de la resistencia de zona para acceder a sus servicios escalables y de misión crítica en Azure.
 * ¿Cuál es el propósito del *Network Security Group*?
+   * Permitir que se filtre el tráfico de red hacia y desde los recursos de Azure en una red virtual de Azure. Permite establecer reglas de seguridad que permiten o deniegan el tráfico de red entrante o el tráfico de red saliente definiendo origen y destino, puerto y protocolo.
+
+
 * Informe de newman 1 (Punto 2)
+
 * Presente el Diagrama de Despliegue de la solución.
 
 
