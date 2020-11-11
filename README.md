@@ -1,5 +1,7 @@
 ### Escuela Colombiana de Ingeniería
 ### Arquitecturas de Software - ARSW
+## German Andres Ospina Quintero
+## Nicolas Ortega Limas
 
 ## Escalamiento en Azure con Maquinas Virtuales, Sacale Sets y Service Plans
 
