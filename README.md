@@ -258,12 +258,12 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
 ```
 
-|         Máquina       |CPU (promedio en la ultima hora)                       |
-|----------------|-------------------------------|-----------------------------|
-|Máquina 1| 13,3631%       
-|Máquina 2          |13,653%          
-|Máquina 3          |23,2629%
-|Máquina 4          |27,664%    
+   |         Máquina       |CPU (promedio en la ultima hora)                       |                                                     
+   |----------------|-------------------------------|                                   
+   |Máquina 1| 13,3631%       |                                                           
+   |Máquina 2          |13,653% |                                                        
+   |Máquina 3          |23,2629% |                                           
+   |Máquina 4          |27,664%  |  
 
 La tasa de éxito aumento al utilizar escalamiento horizontal, porque la carga se distribuye de una mejor manera, al usar diferentes dispositivos que la atiendan, que al utilizar uno solo.
 
@@ -319,12 +319,11 @@ La tasa de éxito aumento al utilizar escalamiento horizontal, porque la carga s
 
 * Informe de newman 1 (Punto 2)
 
-|                |Escalamiento vertical                          |Escalamiento horizontal                        |
-|----------------|-------------------------------|-----------------------------|
-|Tiempos de respuesta| 31.6s        |29.2s          |
+|                |Escalamiento vertical                          |Escalamiento horizontal                        |                            
+|----------------|-------------------------------|-----------------------------|                                   
+|Tiempos de respuesta| 31.6s        |29.2s          |                                        
 |Cantidad de peticiones respondidas con éxito          |6            |10            |
 |Costos de las 2 infraestrucruras          |Costoso|Economico|
-
 
 * Presente el Diagrama de Despliegue de la solución.
 ![](/images/Deployment_Diagram.png)
