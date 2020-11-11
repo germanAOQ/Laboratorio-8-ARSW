@@ -118,25 +118,42 @@ Debemos crear la inbound port rule ya nodejs se ejecuta por defecto en el puerto
 
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.                           
 ![Tiempo](images/Tiempo.PNG)
+
 La función tarda tanto tiempo porque se hace uso de una memoria con muy poca capacidad (B1ls estándar (1 vcpu, 0.5 GiB de memoria))
+
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
 ![Tiempo](images/CPU.PNG)
+
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     ![Tiempo](images/Newman.PNG)
+    
     * Si hubo fallos documentelos y explique.
+    
     Hubo 4 fallos
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
 * B2ms:
-vCPU	Memory: GiB	Temp storage (SSD) GiB	Base CPU Perf of VM	Max CPU Perf of VM		Max data disks	Max cached and temp storage    Max uncached disk throughput   	Max NIC
-2	      8	      16	                              60%	            200%	          	       4	         2400/22.5	                  1920/22.5	                      3
+   * vCpu: 2
+   * Memory GiB: 8
+   * SSD Temp storage: 16
+   * Base CPU Performance: 60%
+   * Max CPU Performance: 200%
+   * Max data discs: 4
+   * Max NIC:3
 * B1ls:
-vCPU	Memory: GiB	Temp storage (SSD) GiB	Base CPU Perf of VM	Max CPU Perf of VM		Max data disks	Max cached and temp storage    Max uncached disk throughput   	Max NIC
-1	         0.5	      4	                         5%	            100%		                2	            200/10	                   160/10	                         2
+   * vCpu: 1
+   * Memory GiB: 0.5
+   * SSD Temp storage: 4
+   * Base CPU Performance: 5%
+   * Max CPU Performance: 100%
+   * Max data discs: 2
+   * Max NIC: 2
+
 
 La máquina B2ms es mas cara y tiene mas capacidad que la máquina B1ls, B2ms esta disponible para Windows y linux.
 
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+
 Creemos que no es lo mejor ya que no se usaron mecanismos que nos grantizaran concurrencia por ende mejoraremos muy poco pero se seguiran teniendo los mismos problemas.
 
 Cuando cambiamos el tamaño de la máquina virtual es necesario reiniciarla, por lo tanto se pierde disponibilidad de la aplicación ya que esta deja de funcionar mientras se reinicia.
