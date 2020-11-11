@@ -325,7 +325,7 @@ La tasa de éxito aumento al utilizar escalamiento horizontal, porque la carga s
 
 
 * Presente el Diagrama de Despliegue de la solución.
-
+![](/images/Deployment_Diagram.png)
 
 
 
