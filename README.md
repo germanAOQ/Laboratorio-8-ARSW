@@ -169,7 +169,7 @@ En nuestro caso si se redujo el consumo de CPU por el aumento en la capacidad de
 
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
 
-
+En nuestro caso si fue mejor y tiene sentido ya que ahora son el doble de sesiones.
 
 ### Parte 2 - Escalabilidad horizontal
 
