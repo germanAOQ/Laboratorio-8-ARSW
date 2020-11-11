@@ -85,75 +85,62 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 **Preguntas**
 
-1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
-   Información general                           
-   Registro de actividad                            
-   Control de acceso (IAM)                        
-   Etiquetas                        
-   Diagnosticar y solucionar problemas       
+1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?                                                 
+   * Redes (NIC, Public IP Address y Virtual Network)
+   * Discos (Tamaño)
+   * Seguridad (Network Security Group)
+   * Recursos de acceso (Llave SSH)
+   * Backup (Copia de seguridad)
 
-   Configuración                                                    
-   * Redes
-   * Conectar
-   * Discos
-   * Tamaño
-   * Seguridad
-   * Recomendaciones de Advisor
-   * Extensiones
-   * Entrega continua
-   * Disponibilidad y escalado
-   * Configuración
-   * Identidad
-   * Propiedades
-   * Bloqueos        
-
-   Operaciones                               
-   * Bastión
-   * Apagado automático
-   * Backup
-   * Recuperación ante desastres
-   * Actualizaciones de invitado y host
-   * Inventariar
-   * Seguimiento de cambios
-   * Administración de configuración (vista previa)
-   * Directivas
-   * Ejecutar comando    
-
-   Supervisión                                                                
-   * Conclusiones
-   * Alertas
-   * Métricas
-   * Configuración de diagnóstico
-   * Registros
-   * Monitor de conexión
-   * Libros                                     
-   Automation                              
-   * Tareas
-   * Exportar plantilla     
-
-   Soporte y solución de problemas                                  
-   * Estado de los recursos
-   * Diagnósticos de arranque
-   * Performance Diagnostics (versión preliminar)
-   * Restablecer contraseña
-   * Volver a implementar
-   * Plan de soporte técnico de Ubuntu Advantage
-   * Consola de serie
-   * Solución de problemas de conexión
-   * Nueva solicitud de soporte técnico                                                
+Network Interface                                             
 
 2. ¿Brevemente describa para qué sirve cada recurso?
+* Redes:
+   * NIC: Componente que proporciona capacidades de red para una computadora.   
+   * Virtual Network: Sirve para realizar comunicación entre recursos de azure como Azure Virtual Machines, es como una red simple, sin embargo ofrece beneficios adicionales       como escalabilidad, aislamiento y disponibilidad.
+   * Public IP Address: Es una dirección IP que se utiliza para acceder a Internet. Las direcciones IP públicas (globales) se enrutan en Internet, a diferencia de las              direcciones privadas.
+
+* Discos: Es la interfaz que se encarga de cuadrar el almacenamiento de la máquina virtual Azure.
+
+* Seguridad:
+   * Network Security Group: Sistema que realiza la función de in firewall para redes On Cloud, filtra el tráfico de salida y entrada de los recursos de una red virtual de      Azure, lo hace por medio de grupos de seguridad que definen estas reglas.
+
+* Recursos de acceso:
+   * Llave SSH: Llaves usadas para el acceso a la máquina virtual por medio de un sistema de cifrado asimétrico.
+
+* Backup:
+   * Copia de seguridad: Copia de la maquina usada para la protección de cargas de trabajo empresariales y restauracion frente a fallos.
+
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+Ya que la ejecucion va ligada a la conexion que se establece con nuestra maquina, luego se cae porque el proceso no se está ejecutando en segundo plano, es decir, no se está ejecutando como un Daemon (o programa persistente) al momento de cerrar la conexión ssh.
+
+Debemos crear la inbound port rule ya nodejs se ejecuta por defecto en el puerto 3000 necesitamos crear la regla para obtener el acceso público al servicio. Ademas en azure, para abrir un puerto o crear un punto de conexión, es necesario crear filtros de red o reglas del firewall del sistema operativo en la maquina virtual. Estas reglas controlan el tráfico entrante y saliente, se colocan en un grupo de seguridad de red asociado al recurso que va a recibir dicho tráfico. En esta caso, se hace necesario crear una regla para crear un punto de conexión con el protocolo ssh.
+
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.                           
 ![Tiempo](images/Tiempo.PNG)
+La función tarda tanto tiempo porque se hace uso de una memoria con muy poca capacidad (B1ls estándar (1 vcpu, 0.5 GiB de memoria))
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
 ![Tiempo](images/CPU.PNG)
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
-    * Tiempos de ejecución de cada petición.                        
-      ![Tiempo](images/Newman.PNG)
+    * Tiempos de ejecución de cada petición.
+    ![Tiempo](images/Newman.PNG)
     * Si hubo fallos documentelos y explique.
+    Hubo 4 fallos
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+* B2ms:
+vCPU	Memory: GiB	Temp storage (SSD) GiB	Base CPU Perf of VM	Max CPU Perf of VM		Max data disks	Max cached and temp storage    Max uncached disk throughput   	Max NIC
+2	      8	      16	                              60%	            200%	          	       4	         2400/22.5	                  1920/22.5	                      3
+* B1ls:
+vCPU	Memory: GiB	Temp storage (SSD) GiB	Base CPU Perf of VM	Max CPU Perf of VM		Max data disks	Max cached and temp storage    Max uncached disk throughput   	Max NIC
+1	         0.5	      4	                         5%	            100%		                2	            200/10	                   160/10	                         2
+
+La máquina B2ms es mas cara y tiene mas capacidad que la máquina B1ls, B2ms esta disponible para Windows y linux.
+
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+Creemos que no es lo mejor ya que no se usaron mecanismos que nos grantizaran concurrencia por ende mejoraremos muy poco pero se seguiran teniendo los mismos problemas.
+
+Cuando cambiamos el tamaño de la máquina virtual es necesario reiniciarla, por lo tanto se pierde disponibilidad de la aplicación ya que esta deja de funcionar mientras se reinicia.
+
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
